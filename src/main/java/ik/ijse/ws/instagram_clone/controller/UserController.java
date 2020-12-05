@@ -27,17 +27,25 @@ public class UserController {
         return null;
     }
 
-//    @GetMapping("/login")
-//    public ResponseEntity<StandardResponse> login(@RequestBody UserDto userDto) {
-//        try {
-//            boolean islogged = userService.loginUser(userDto);
-//            return new ResponseEntity<>(new StandardResponse(200, "true", null), HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return null;
-//    }
+    @GetMapping("/login")
+    public ResponseEntity<StandardResponse> login(@RequestBody UserDto userDto) {
+        try {
+            boolean islogged = userService.loginUser(userDto);
+            System.out.println(islogged);
+            if (islogged){
+                System.out.println("Ïs Loggin");
+                return new ResponseEntity<>(new StandardResponse(200, "true", null), HttpStatus.OK);
+            }else{
+                System.out.println("Loggin fail");
+                return new ResponseEntity<>(new StandardResponse(500, "Loggin fail", null), HttpStatus.OK);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 
 }

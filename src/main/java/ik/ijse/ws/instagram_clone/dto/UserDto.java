@@ -17,6 +17,11 @@ public class UserDto {
         this.pro_pic = pro_pic;
     }
 
+    public UserDto(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getPro_pic() {
         return pro_pic;
     }

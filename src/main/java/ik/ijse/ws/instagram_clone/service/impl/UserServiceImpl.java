@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.ResultSet;
 
 @Service
 @Transactional
@@ -34,13 +35,15 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-//    @Override
-//    public boolean loginUser(UserDto userDto) throws Exception {
-//        User user = new User();
-//        user.setUsername(userDto.getusername());
-//        user.setPassword(userDto.getPassword());
-//        User user1 = userRepository.loginUser(user);
-//        System.out.println(user1);
-//        return false;
-//    }
+    @Override
+    public boolean loginUser(UserDto userDto) throws Exception {
+        User user = new User();
+        user.setUsername(userDto.getusername());
+        user.setPassword(userDto.getPassword());
+        User set =  userRepository.findUserByUsername(user.getUsername());
+        if (set !=null) {
+            return true;
+        }
+        return false;
+    }
 }

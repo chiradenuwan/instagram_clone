@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 public interface UserService {
     StandardResponse registerUser(UserDto userDto) throws Exception;
 
-//    boolean loginUser(UserDto userDto) throws Exception;
+    boolean loginUser(UserDto userDto) throws Exception;
 }
