@@ -21,6 +21,7 @@ dependencies {
 	compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.31.v20200723'
 	compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.31.v20200723'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.3.4.RELEASE'
+	compile("org.springframework.boot:spring-boot-starter-web")
 
 }
 
