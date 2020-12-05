@@ -31,7 +31,6 @@ public class UserController {
     public ResponseEntity<StandardResponse> login(@RequestBody UserDto userDto) {
         try {
             boolean islogged = userService.loginUser(userDto);
-            System.out.println(islogged);
             if (islogged){
                 System.out.println("Ïs Loggin");
                 return new ResponseEntity<>(new StandardResponse(200, "true", null), HttpStatus.OK);
