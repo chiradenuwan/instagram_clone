@@ -1,14 +1,14 @@
 package ik.ijse.ws.instagram_clone.util;
 
-public class StandardRespoce {
+public class StandardResponse {
     private int code;
     private String message;
     private Object object;
 
-    public StandardRespoce() {
+    public StandardResponse() {
     }
 
-    public StandardRespoce(int code, String message, Object object) {
+    public StandardResponse(int code, String message, Object object) {
         this.code = code;
         this.message = message;
         this.object = object;
