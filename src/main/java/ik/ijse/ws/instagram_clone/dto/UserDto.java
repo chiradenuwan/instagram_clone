@@ -1,17 +1,28 @@
 package ik.ijse.ws.instagram_clone.dto;
 
-public class RegisterDto {
+public class UserDto {
     private String name;
     private String email;
     private String password;
+    private String pro_pic;
 
-    public RegisterDto() {
+
+    public UserDto() {
     }
 
-    public RegisterDto(String name, String email, String password) {
+    public UserDto(String name, String email, String password, String pro_pic) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.pro_pic = pro_pic;
+    }
+
+    public String getPro_pic() {
+        return pro_pic;
+    }
+
+    public void setPro_pic(String pro_pic) {
+        this.pro_pic = pro_pic;
     }
 
     public String getName() {
@@ -40,10 +51,11 @@ public class RegisterDto {
 
     @Override
     public String toString() {
-        return "RegisterDto{" +
+        return "UserDto{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", pro_pic='" + pro_pic + '\'' +
                 '}';
     }
 }
