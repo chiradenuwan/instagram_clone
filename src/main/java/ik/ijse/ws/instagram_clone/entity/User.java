@@ -55,6 +55,7 @@ public class User {
         return u_id;
     }
 
+
     public void setu_id(int u_id) {
         this.u_id = u_id;
     }
