@@ -1,0 +1,29 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.0'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'ik.ijse.ws.instagram_clone'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation "mysql:mysql-connector-java:6.0.6"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+
+	compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.31.v20200723'
+	compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.31.v20200723'
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.3.4.RELEASE'
+
+}
+
+test {
+	useJUnitPlatform()
+}
