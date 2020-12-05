@@ -2,7 +2,7 @@ package ik.ijse.ws.instagram_clone.dto;
 
 public class UserDto {
     private String name;
-    private String email;
+    private String username;
     private String password;
     private String pro_pic;
 
@@ -10,9 +10,9 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(String name, String email, String password, String pro_pic) {
+    public UserDto(String name, String username, String password, String pro_pic) {
         this.name = name;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.pro_pic = pro_pic;
     }
@@ -33,12 +33,12 @@ public class UserDto {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getusername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setusername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -53,7 +53,7 @@ public class UserDto {
     public String toString() {
         return "UserDto{" +
                 "name='" + name + '\'' +
-                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", pro_pic='" + pro_pic + '\'' +
                 '}';

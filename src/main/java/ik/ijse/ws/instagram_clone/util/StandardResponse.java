@@ -40,7 +40,7 @@ public class StandardResponse {
 
     @Override
     public String toString() {
-        return "StandardRespoce{" +
+        return "StandardResponse{" +
                 "code=" + code +
                 ", message='" + message + '\'' +
                 ", object=" + object +
