@@ -41,7 +41,7 @@ public class AmazonS3ClientServiceImpl implements AmazonS3ClientService
     public void uploadFileToS3Bucket(MultipartFile multipartFile, boolean enablePublicReadAccess)
     {
         String fileName = multipartFile.getOriginalFilename();
-
+        System.out.println(fileName);
         try {
             //creating the file in the server (temporarily)
             File file = new File(fileName);
@@ -50,7 +50,7 @@ public class AmazonS3ClientServiceImpl implements AmazonS3ClientService
             fos.close();
 
             PutObjectRequest putObjectRequest = new PutObjectRequest(this.awsS3AudioBucket, fileName, file);
-
+            System.out.println(putObjectRequest);
             if (enablePublicReadAccess) {
                 putObjectRequest.withCannedAcl(CannedAccessControlList.PublicRead);
             }
