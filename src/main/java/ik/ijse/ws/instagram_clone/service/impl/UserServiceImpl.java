@@ -6,18 +6,16 @@ import ik.ijse.ws.instagram_clone.repository.UserRepository;
 import ik.ijse.ws.instagram_clone.service.UserService;
 import ik.ijse.ws.instagram_clone.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.sql.ResultSet;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+
 
     @Override
     public StandardResponse registerUser(UserDto userDto) throws Exception {
@@ -28,7 +26,7 @@ public class UserServiceImpl implements UserService {
         user.setName(userDto.getName());
         user.setUsername(userDto.getusername());
         user.setPassword(userDto.getPassword());
-        user.setPro_pic(userDto.getPro_pic());
+        user.setPro_pic("https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + userDto.getPro_pic().getOriginalFilename());
         User save = userRepository.save(user);
         System.out.println(save);
 
