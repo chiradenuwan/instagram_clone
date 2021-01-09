@@ -11,10 +11,25 @@ sourceCompatibility = '1.8'
 repositories {
 	mavenCentral()
 }
+dependencyManagement {
+	imports {
+		mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.228'
+	}
+}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation "mysql:mysql-connector-java:6.0.6"
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+
+	compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.31.v20200723'
+	compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.31.v20200723'
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.3.4.RELEASE'
+	compile("org.springframework.boot:spring-boot-starter-web")
+	compile 'com.amazonaws:aws-java-sdk-s3'
+	compile group: 'com.amazonaws', name: 'aws-java-sdk-polly', version: '1.11.67'
 }
 
 test {
