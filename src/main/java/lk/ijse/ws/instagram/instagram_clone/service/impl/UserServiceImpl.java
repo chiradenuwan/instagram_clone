@@ -18,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public StandardResponse registerUser(UserDto userDto) throws Exception {
+        if (userRepo.existsByUsername(userDto.getUsername())) {
+            return new StandardResponse(500, "User Already Exists", null);
+        }
         System.out.println(userDto.getProfilePicUrl().getOriginalFilename());
         User user = new User();
         user.setName(userDto.getName());
@@ -29,7 +32,7 @@ public class UserServiceImpl implements UserService {
             return new StandardResponse(200, "Added Sucessful", save);
 
         }
-        return new StandardResponse(500, "Not Added", null);
+        return new StandardResponse(415, "Not Added", null);
 
     }
 }
