@@ -14,6 +14,24 @@ public class User {
     private String password;
     private String profilePicUrl;
 
+    public User() {
+    }
+
+    public User(String name, String username, String password, String profilePicUrl) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.profilePicUrl = profilePicUrl;
+    }
+
+    public User(int userId, String name, String username, String password, String profilePicUrl) {
+        this.userId = userId;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.profilePicUrl = profilePicUrl;
+    }
+
     @OneToMany
     @MapKey(name = "post")
     private List<Post> allPosts;
