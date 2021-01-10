@@ -17,6 +17,15 @@ public class Comment {
     private String comment;
     private Date time;
 
+    public Comment() {
+    }
+
+    public Comment(User commenter, Post post, String comment) {
+        this.commenter = commenter;
+        this.post = post;
+        this.comment = comment;
+    }
+
     public Long getId() {
         return id;
     }
@@ -55,5 +64,16 @@ public class Comment {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", commenter=" + commenter +
+                ", post=" + post +
+                ", comment='" + comment + '\'' +
+                ", time=" + time +
+                '}';
     }
 }
