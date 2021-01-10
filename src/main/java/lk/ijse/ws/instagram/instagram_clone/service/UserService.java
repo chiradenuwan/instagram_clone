@@ -5,4 +5,7 @@ import lk.ijse.ws.instagram.instagram_clone.util.StandardResponse;
 
 public interface UserService {
     StandardResponse registerUser(UserDto userDto) throws Exception;
+
+    StandardResponse getUserbyId(int userId) throws Exception;
+
 }

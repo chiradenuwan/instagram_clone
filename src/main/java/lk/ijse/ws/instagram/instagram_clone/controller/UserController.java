@@ -36,4 +36,18 @@ public class UserController {
 
         return null;
     }
+
+
+
+    @RequestMapping(value = "/getuser/{userId}")
+    public ResponseEntity<StandardResponse> getUserById(@PathVariable  int userId) {
+        System.out.println("get call");
+        StandardResponse standardResponse = null;
+        try {
+            standardResponse = userService.getUserbyId(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(standardResponse, HttpStatus.OK);
+    }
 }
