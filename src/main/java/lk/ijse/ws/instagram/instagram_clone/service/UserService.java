@@ -8,4 +8,5 @@ public interface UserService {
 
     StandardResponse getUserbyId(int userId) throws Exception;
 
+    StandardResponse updateUserDetails(UserDto userDto, int userId) throws Exception;
 }

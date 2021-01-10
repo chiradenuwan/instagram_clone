@@ -38,6 +38,22 @@ public class UserController {
     }
 
 
+    @PutMapping(value = "/update/{userId}", consumes = {"multipart/form-data"})
+    public ResponseEntity<StandardResponse> update(@RequestBody UserDto userDto, @RequestPart(value = "profilePicUrl") MultipartFile file, @PathVariable int userId) {
+        try {
+            System.out.println(userDto);
+            System.out.println(file);
+            System.out.println("register call : ");
+            this.amazonS3ClientService.uploadFileToS3Bucket(userDto.getProfilePicUrl(), true);
+            StandardResponse responseResponse = userService.updateUserDetails(userDto,userId);
+            return new ResponseEntity<>(responseResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
     @RequestMapping(value = "/getuser/{userId}")
     public ResponseEntity<StandardResponse> getUserById(@PathVariable  int userId) {
@@ -46,6 +62,10 @@ public class UserController {
         try {
             standardResponse = userService.getUserbyId(userId);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            if (e.getMessage().equals("Invalid user Id:"+userId)){
+                return new ResponseEntity<>(standardResponse, HttpStatus.OK);
+            }
             e.printStackTrace();
         }
         return new ResponseEntity<>(standardResponse, HttpStatus.OK);

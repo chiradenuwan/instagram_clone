@@ -41,10 +41,26 @@ public class UserServiceImpl implements UserService {
     public StandardResponse getUserbyId(int userId) throws Exception {
         Optional<User> user = userRepo.findById(userId);
         System.out.println("User : " + user);
-        if (user != null) {
+        if (user.isPresent()) {
             return new StandardResponse(200, "Added Sucessful", user);
 
         }
+        return new StandardResponse(415, "Not Added", null);
+    }
+
+    @Override
+    public StandardResponse updateUserDetails(UserDto userDto, int userId) throws Exception {
+        User user = new User();
+        user.setName(userDto.getName());
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword());
+        user.setProfilePicUrl("https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + userDto.getProfilePicUrl().getOriginalFilename());
+//        User save = userRepo.save(user.getUserId(),user);
+//        System.out.println(save);
+//        if (save != null) {
+//            return new StandardResponse(200, "Added Sucessful", save);
+//
+//        }
         return new StandardResponse(415, "Not Added", null);
     }
 }
