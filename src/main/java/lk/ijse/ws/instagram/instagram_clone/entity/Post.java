@@ -45,4 +45,23 @@ public class Post {
     public void setPostTime(Date postTime) {
         this.postTime = postTime;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", postTime=" + postTime +
+                ", user=" + user +
+                '}';
+    }
 }
