@@ -23,7 +23,6 @@ public class PostServiceImpl implements PostService {
         System.out.println(postDto);
         Post post = new Post();
         post.setImageUrl("https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + postDto.getImageUrl().getOriginalFilename());
-//        post.setImageUrl("https://myawsimagebucket.s3.us-east-2.amazonaws.com/12.jpg");
         post.setPostTime(new Date());
         post.setText(postDto.getText());
         post.setUser(postDto.getUser());
