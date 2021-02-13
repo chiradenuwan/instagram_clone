@@ -38,4 +38,43 @@ public class PostController {
 
         return null;
     }
+    @PutMapping(value = "/update/{postId}", consumes = {"multipart/form-data"})
+    public ResponseEntity<StandardResponse> update(PostDto postDto, @RequestPart(value = "imageUrl") MultipartFile file, @PathVariable int postId) {
+        try {
+            System.out.println(postDto);
+            System.out.println(file);
+            System.out.println("register call : ");
+//            this.amazonS3ClientService.uploadFileToS3Bucket(postDto.getImageUrl(), true);
+            StandardResponse responseResponse = postService.updatePost(postDto,postId);
+            return new ResponseEntity<>(responseResponse, HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @GetMapping(value = "/getAll")
+    public StandardResponse getAllPost() {
+        try {
+            System.out.println("calling*********************");
+            StandardResponse responseResponse = postService.getAllPosts();
+            return responseResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @DeleteMapping(value = "/delete/{postId}")
+    public ResponseEntity<StandardResponse> deletePost(@PathVariable  int postId) {
+        try {
+            StandardResponse standardResponse = postService.deletePost(postId);
+            System.out.println(standardResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

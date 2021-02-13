@@ -44,7 +44,7 @@ public class UserController {
             System.out.println(userDto);
             System.out.println(file);
             System.out.println("register call : ");
-            this.amazonS3ClientService.uploadFileToS3Bucket(userDto.getProfilePicUrl(), true);
+//            this.amazonS3ClientService.uploadFileToS3Bucket(userDto.getProfilePicUrl(), true);
             StandardResponse responseResponse = userService.updateUserDetails(userDto,userId);
             return new ResponseEntity<>(responseResponse, HttpStatus.OK);
         } catch (Exception e) {
