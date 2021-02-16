@@ -18,14 +18,29 @@ public class ReactController {
     @Autowired
     ReactService reactService;
 
-    @PostMapping(value = "/post", consumes = {"application/json"}, produces = "application/json")
-    public ResponseEntity<StandardResponse> register(@RequestBody ReactDto reactDto) {
+    @PostMapping(value = "/save", consumes = {"application/json"}, produces = "application/json")
+    public ResponseEntity<StandardResponse> save(@RequestBody ReactDto reactDto) {
         try {
             System.out.println(reactDto);
-
             System.out.println("react call : ");
 //            this.amazonS3ClientService.uploadFileToS3Bucket(postDto.getImageUrl(), true);
             StandardResponse responseResponse = reactService.reactPost(reactDto);
+            return new ResponseEntity<>(responseResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @PutMapping(value = "/update/{reactId}", consumes = {"application/json"}, produces = "application/json")
+    public ResponseEntity<StandardResponse> update(@RequestBody ReactDto reactDto,@PathVariable int reactId) {
+        try {
+            System.out.println(reactDto);
+            System.out.println("react call : ");
+//            this.amazonS3ClientService.uploadFileToS3Bucket(postDto.getImageUrl(), true);
+            //            this.amazonS3ClientService.uploadFileToS3Bucket(postDto.getImageUrl(), true);
+            StandardResponse responseResponse = reactService.updateReact(reactDto,reactId);
             return new ResponseEntity<>(responseResponse, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

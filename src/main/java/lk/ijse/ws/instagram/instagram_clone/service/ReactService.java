@@ -5,4 +5,6 @@ import lk.ijse.ws.instagram.instagram_clone.util.StandardResponse;
 
 public interface ReactService {
     StandardResponse reactPost(ReactDto reactDto) throws Exception;
+
+    StandardResponse updateReact(ReactDto reactDto, int reactId) throws Exception;
 }

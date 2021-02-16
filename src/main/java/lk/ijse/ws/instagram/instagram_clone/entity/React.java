@@ -15,6 +15,17 @@ public class React {
     private String reaction;
     private Date time;
 
+    public React() {
+    }
+
+    public React(Long id, User reactor, Post post, String reaction, Date time) {
+        this.id = id;
+        this.reactor = reactor;
+        this.post = post;
+        this.reaction = reaction;
+        this.time = time;
+    }
+
     public Long getId() {
         return id;
     }

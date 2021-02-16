@@ -51,7 +51,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public StandardResponse deletePost(int postId) throws Exception {
         postRepo.deleteById((long) postId);
-        return new StandardResponse(200, "Deleted Successful", "");
+        return new StandardResponse(200, "Deleted Successful", null);
     }
 
     @Override
