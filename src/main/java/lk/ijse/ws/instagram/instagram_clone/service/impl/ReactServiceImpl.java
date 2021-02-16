@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,5 +60,12 @@ public class ReactServiceImpl implements ReactService {
         } else {
             return new StandardResponse(500, "Record not found", "");
         }
+    }
+
+    @Override
+    public StandardResponse getAllReactionsToPost(int postId) throws Exception {
+        List<React> allById = reactRepo.findAllByPostId(postId);
+        System.out.println(allById);
+        return null;
     }
 }

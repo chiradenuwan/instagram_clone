@@ -48,4 +48,19 @@ public class ReactController {
 
         return null;
     }
+
+    @GetMapping(value = "/getAlltopost/{postId}")
+    public StandardResponse getAllReactionsToPost(@PathVariable int postId) {
+        try {
+            System.out.println("calling*********************");
+            StandardResponse responseResponse = reactService.getAllReactionsToPost(postId);
+            return responseResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
 }
