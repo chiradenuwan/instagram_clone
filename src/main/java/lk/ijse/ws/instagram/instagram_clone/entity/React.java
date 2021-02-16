@@ -65,4 +65,15 @@ public class React {
     public void setTime(Date time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "React{" +
+                "id=" + id +
+                ", reactor=" + reactor +
+                ", post=" + post +
+                ", reaction='" + reaction + '\'' +
+                ", time=" + time +
+                '}';
+    }
 }

@@ -13,6 +13,18 @@ public class User {
     private String username;
     private String password;
     private String profilePicUrl;
+    @OneToMany
+    @MapKey(name = "post")
+    private List<Post> allPosts;
+    @OneToMany
+    @MapKey(name = "share")
+    private List<Share> allShares;
+    @OneToMany
+    @MapKey(name = "react")
+    private List<React> allReacts;
+    @OneToMany
+    @MapKey(name = "comment")
+    private List<Comment> allComments;
 
     public User() {
     }
@@ -31,22 +43,6 @@ public class User {
         this.password = password;
         this.profilePicUrl = profilePicUrl;
     }
-
-    @OneToMany
-    @MapKey(name = "post")
-    private List<Post> allPosts;
-
-    @OneToMany
-    @MapKey(name = "share")
-    private List<Share> allShares;
-
-    @OneToMany
-    @MapKey(name = "react")
-    private List<React> allReacts;
-
-    @OneToMany
-    @MapKey(name = "comment")
-    private List<Comment> allComments;
 
     public int getUserId() {
         return userId;
@@ -86,5 +82,21 @@ public class User {
 
     public void setProfilePicUrl(String profilePicUrl) {
         this.profilePicUrl = profilePicUrl;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", profilePicUrl='" + profilePicUrl + '\'' +
+                ", allPosts=" + allPosts +
+                ", allShares=" + allShares +
+                ", allReacts=" + allReacts +
+                ", allComments=" + allComments +
+                '}';
     }
 }

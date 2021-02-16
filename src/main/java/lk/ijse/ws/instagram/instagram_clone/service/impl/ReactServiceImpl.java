@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -65,7 +64,10 @@ public class ReactServiceImpl implements ReactService {
     @Override
     public StandardResponse getAllReactionsToPost(int postId) throws Exception {
         List<React> allById = reactRepo.findAllByPostId(postId);
-        System.out.println(allById);
-        return null;
+        if (allById.size() > 0) {
+            return new StandardResponse(200, "Reactions", allById.toString());
+        } else {
+            return new StandardResponse(415, "Not Reactions to Post", null);
+        }
     }
 }
