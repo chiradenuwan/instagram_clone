@@ -18,6 +18,17 @@ public class Post {
         return id;
     }
 
+    public Post() {
+    }
+
+    public Post(Long id, String text, String imageUrl, Date postTime, User user) {
+        this.id = id;
+        this.text = text;
+        this.imageUrl = imageUrl;
+        this.postTime = postTime;
+        this.user = user;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

@@ -1,6 +1,5 @@
 package lk.ijse.ws.instagram.instagram_clone.service.impl;
 
-import javafx.geometry.Pos;
 import lk.ijse.ws.instagram.instagram_clone.dto.PostDto;
 import lk.ijse.ws.instagram.instagram_clone.entity.Post;
 import lk.ijse.ws.instagram.instagram_clone.repository.PostRepo;
@@ -52,27 +51,33 @@ public class PostServiceImpl implements PostService {
     @Override
     public StandardResponse deletePost(int postId) throws Exception {
         postRepo.deleteById((long) postId);
-         return new StandardResponse(200,"Deleted Successful","");
+        return new StandardResponse(200, "Deleted Successful", "");
     }
 
     @Override
-    public StandardResponse updatePost(PostDto postDto,int postId) throws Exception {
-        System.out.println(postDto);
+    public StandardResponse updatePost(PostDto postDto, int postId) throws Exception {
         Post post = new Post();
         post.setImageUrl("https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + postDto.getImageUrl().getOriginalFilename());
         post.setPostTime(new Date());
         post.setText(postDto.getText());
         post.setUser(postDto.getUser());
 
-        Optional<Post> existingStudent = postRepo.findById((long)postId);
-        if(existingStudent == null) {
-             return new StandardResponse(200, "Record not found", "");
+        Optional<Post> isExists = postRepo.findById((long) postId);
+        if (isExists == null) {
+            return new StandardResponse(200, "Record not found", "");
         }
-        Post studentResponse = (Post) postRepo.saveAll(post);
- //        Post update = postRepo.updatePost(post.getText(),post.getImageUrl(),post.getPostTime(),postId);
-        System.out.println(studentResponse);
-        if (studentResponse != null) {
-            return new StandardResponse(200, "Added Successful", studentResponse);
+        Post newPost = new Post(
+                isExists.get().getId(),
+                postDto.getText(),
+                "https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + postDto.getImageUrl().getOriginalFilename(),
+                new Date(),
+                postDto.getUser()
+
+        );
+        Post save = postRepo.save(newPost);
+        System.out.println(save);
+        if (save != null) {
+            return new StandardResponse(200, "Added Successful", save);
 
         }
         return new StandardResponse(415, "Not Added", null);
