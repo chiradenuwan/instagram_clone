@@ -9,4 +9,6 @@ public interface ReactService {
     StandardResponse updateReact(ReactDto reactDto, int reactId) throws Exception;
 
     StandardResponse getAllReactionsToPost(int postId) throws Exception;
+
+    StandardResponse deleteReact(int reactId) throws Exception;
 }

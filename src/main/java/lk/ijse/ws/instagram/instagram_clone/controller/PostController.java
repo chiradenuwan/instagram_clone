@@ -1,7 +1,6 @@
 package lk.ijse.ws.instagram.instagram_clone.controller;
 
 import lk.ijse.ws.instagram.instagram_clone.dto.PostDto;
-import lk.ijse.ws.instagram.instagram_clone.dto.UserDto;
 import lk.ijse.ws.instagram.instagram_clone.service.AmazonS3ClientService;
 import lk.ijse.ws.instagram.instagram_clone.service.PostService;
 import lk.ijse.ws.instagram.instagram_clone.util.StandardResponse;
@@ -68,10 +67,10 @@ public class PostController {
     }
 
     @DeleteMapping(value = "/delete/{postId}")
-    public ResponseEntity<StandardResponse> deletePost(@PathVariable  int postId) {
+    public StandardResponse deletePost(@PathVariable  int postId) {
         try {
             StandardResponse standardResponse = postService.deletePost(postId);
-            System.out.println(standardResponse);
+            return standardResponse;
         } catch (Exception e) {
             e.printStackTrace();
         }

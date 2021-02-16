@@ -70,4 +70,11 @@ public class ReactServiceImpl implements ReactService {
             return new StandardResponse(415, "Not Reactions to Post", null);
         }
     }
+
+    @Override
+    public StandardResponse deleteReact(int reactId) throws Exception {
+        reactRepo.deleteById((long) reactId);
+        return new StandardResponse(200, "Deleted Successful",null);
+    }
+
 }

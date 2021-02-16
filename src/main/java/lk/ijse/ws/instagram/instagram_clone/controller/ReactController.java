@@ -2,7 +2,6 @@ package lk.ijse.ws.instagram.instagram_clone.controller;
 
 
 import lk.ijse.ws.instagram.instagram_clone.dto.ReactDto;
-import lk.ijse.ws.instagram.instagram_clone.dto.ShareDto;
 import lk.ijse.ws.instagram.instagram_clone.service.ReactService;
 import lk.ijse.ws.instagram.instagram_clone.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +60,15 @@ public class ReactController {
         return null;
     }
 
-
+    @DeleteMapping(value = "/delete/{reactId}")
+    public StandardResponse deletePost(@PathVariable  int reactId) {
+        try {
+            StandardResponse standardResponse = reactService.deleteReact(reactId);
+           return standardResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
