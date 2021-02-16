@@ -56,12 +56,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public StandardResponse updatePost(PostDto postDto, int postId) throws Exception {
-        Post post = new Post();
-        post.setImageUrl("https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + postDto.getImageUrl().getOriginalFilename());
-        post.setPostTime(new Date());
-        post.setText(postDto.getText());
-        post.setUser(postDto.getUser());
-
         Optional<Post> isExists = postRepo.findById((long) postId);
         if (isExists == null) {
             return new StandardResponse(200, "Record not found", "");
@@ -74,13 +68,12 @@ public class PostServiceImpl implements PostService {
                 postDto.getUser()
 
         );
-        Post save = postRepo.save(newPost);
-        System.out.println(save);
-        if (save != null) {
-            return new StandardResponse(200, "Added Successful", save);
-
+        Post update = postRepo.save(newPost);
+        System.out.println(update);
+        if (update != null) {
+            return new StandardResponse(200, "Update Successful", update);
         }
-        return new StandardResponse(415, "Not Added", null);
+        return new StandardResponse(415, "Not Updated", null);
 
     }
 }
