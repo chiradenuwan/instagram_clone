@@ -35,4 +35,16 @@ public class ShareController {
 
         return null;
     }
+
+
+    @DeleteMapping(value = "/delete/{shareId}")
+    public StandardResponse deleteSharePost(@PathVariable  int shareId) {
+        try {
+            StandardResponse standardResponse = shareService.deleteSharedPost(shareId);
+            return standardResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

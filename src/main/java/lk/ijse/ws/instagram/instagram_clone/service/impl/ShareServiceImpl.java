@@ -34,4 +34,10 @@ public class ShareServiceImpl implements ShareService {
         }
         return new StandardResponse(415, "Not Added", null);
     }
+
+    @Override
+    public StandardResponse deleteSharedPost(int shareId) throws Exception {
+        shareRepo.deleteById((long) shareId);
+        return new StandardResponse(200, "Deleted Successful",null);
+    }
 }
