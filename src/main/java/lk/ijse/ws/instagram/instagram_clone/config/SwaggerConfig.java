@@ -42,7 +42,7 @@ public class SwaggerConfig {
     public Docket consumerSwaggerConfiguration() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2);
         docket.select()
-                .apis(RequestHandlerSelectors.basePackage("lk.rc.aws.awsinstagramclone.api.controller"))
+                .apis(RequestHandlerSelectors.basePackage("lk.ijse.ws.instagram.instagram_clone.controller"))
                 .build().groupName("Consumer")
                 .directModelSubstitute(LocalDate.class, String.class)
                 .directModelSubstitute(Time.class, String.class)
