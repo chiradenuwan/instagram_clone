@@ -73,7 +73,7 @@ public class PostServiceImpl implements PostService {
         Post newPost = new Post(
                 isExists.get().getId(),
                 postDto.getText(),
-                "https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + postDto.getImageUrl().getOriginalFilename(),
+                imageUrl,
                 new Date(),
                 postDto.getUser()
 

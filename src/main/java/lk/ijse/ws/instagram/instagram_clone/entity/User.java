@@ -13,16 +13,16 @@ public class User {
     private String username;
     private String password;
     private String profilePicUrl;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @MapKey(name = "post")
     private List<Post> allPosts;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @MapKey(name = "share")
     private List<Share> allShares;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @MapKey(name = "react")
     private List<React> allReacts;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @MapKey(name = "comment")
     private List<Comment> allComments;
 

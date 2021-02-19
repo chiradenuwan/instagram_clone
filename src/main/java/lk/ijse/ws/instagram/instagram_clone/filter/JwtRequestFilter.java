@@ -1,6 +1,8 @@
 package lk.ijse.ws.instagram.instagram_clone.filter;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import lk.ijse.ws.instagram.instagram_clone.entity.User;
+import lk.ijse.ws.instagram.instagram_clone.repository.UserRepository;
 import lk.ijse.ws.instagram.instagram_clone.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +26,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private UserDetailsService userServiceImpl;
 
     @Autowired
+    private UserRepository userRepository;
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     @Override
@@ -40,6 +44,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwtToken = requestTokenHeader.substring(7);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+                User user = userRepository.getUserByUsername(username);
+                request.setAttribute("user", user.getUserId());
+
             } catch (IllegalArgumentException e) {
                 System.out.println("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {

@@ -12,4 +12,7 @@ public interface UserService {
     StandardResponse updateUserDetails(UserDto userDto, int userId) throws Exception;
 
     User loadUsernameAndPassword(String username) throws Exception;
+
+    StandardResponse getAllUsers() throws Exception;
+
 }

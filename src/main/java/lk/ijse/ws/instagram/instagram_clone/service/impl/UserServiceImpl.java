@@ -1,9 +1,11 @@
 package lk.ijse.ws.instagram.instagram_clone.service.impl;
 
 import lk.ijse.ws.instagram.instagram_clone.dto.UserDto;
+import lk.ijse.ws.instagram.instagram_clone.entity.Post;
 import lk.ijse.ws.instagram.instagram_clone.entity.User;
 import lk.ijse.ws.instagram.instagram_clone.repository.UserRepository;
 import lk.ijse.ws.instagram.instagram_clone.service.UserService;
+import lk.ijse.ws.instagram.instagram_clone.util.S3FileUploader;
 import lk.ijse.ws.instagram.instagram_clone.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +30,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private S3FileUploader fileUploader;
+
     @Override
     public StandardResponse registerUser(UserDto userDto) throws Exception {
         if (userRepository.existsByUsername(userDto.getUsername())) {
@@ -37,7 +43,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setName(userDto.getName());
         user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setProfilePicUrl("https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + userDto.getProfilePicUrl().getOriginalFilename());
+        user.setProfilePicUrl(this.fileUploader.uploadFile(userDto.getProfilePicUrl()));
         User save = userRepository.save(user);
         if (save != null) {
             return new StandardResponse(200, "Added Sucessful", save);
@@ -66,7 +72,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setName(userDto.getName());
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
-        user.setProfilePicUrl("https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + userDto.getProfilePicUrl().getOriginalFilename());
+        user.setProfilePicUrl(this.fileUploader.uploadFile(userDto.getProfilePicUrl()));
         User update = userRepository.save(user);
         System.out.println(update);
         if (update != null) {
@@ -80,6 +86,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User loadUsernameAndPassword(String username) throws Exception {
 
         return userRepository.getUserByUsername(username);
+    }
+
+    @Override
+    public StandardResponse getAllUsers() throws Exception {
+        List<User> all = (List<User>) userRepository.findAll();
+        if (all.size() > 0) {
+            return new StandardResponse(200, "", all);
+        } else {
+            return new StandardResponse(200, "", null);
+        }
     }
 
     @Override
