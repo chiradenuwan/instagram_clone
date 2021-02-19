@@ -18,11 +18,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-//@Component
+@Component
 public class S3FileUploader {
 
     @Autowired
     private AmazonS3 amazonS3;
+
     @Value("${aws.s3.bucket}")
     private String bucketName;
 

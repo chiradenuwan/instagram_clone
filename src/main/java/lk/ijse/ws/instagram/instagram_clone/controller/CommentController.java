@@ -22,7 +22,7 @@ public class CommentController {
         try {
             System.out.println(comment);
             System.out.println("register call : ");
-//            this.amazonS3ClientService.uploadFileToS3Bucket(postDto.getImageUrl(), true);
+
             StandardResponse responseResponse = commentService.createComment(comment);
             return new ResponseEntity<>(responseResponse, HttpStatus.OK);
         } catch (Exception e) {

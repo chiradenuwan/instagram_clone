@@ -4,6 +4,7 @@ import lk.ijse.ws.instagram.instagram_clone.dto.PostDto;
 import lk.ijse.ws.instagram.instagram_clone.entity.Post;
 import lk.ijse.ws.instagram.instagram_clone.repository.PostRepo;
 import lk.ijse.ws.instagram.instagram_clone.service.PostService;
+import lk.ijse.ws.instagram.instagram_clone.util.S3FileUploader;
 import lk.ijse.ws.instagram.instagram_clone.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,16 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepo postRepo;
 
+    @Autowired
+    private S3FileUploader fileUploader;
+
     @Override
     public StandardResponse createPost(PostDto postDto) throws Exception {
         System.out.println(postDto);
         Post post = new Post();
-        post.setImageUrl("https://myawsimagebucket.s3.us-east-2.amazonaws.com/" + postDto.getImageUrl().getOriginalFilename());
+        String s = this.fileUploader.uploadFile(postDto.getImageUrl());
+        System.out.println("file name is : " + s);
+        post.setImageUrl(this.fileUploader.uploadFile(postDto.getImageUrl()));
         post.setPostTime(new Date());
         post.setText(postDto.getText());
         post.setUser(postDto.getUser());
@@ -60,6 +66,10 @@ public class PostServiceImpl implements PostService {
         if (isExists == null) {
             return new StandardResponse(200, "Record not found", "");
         }
+        String imageUrl;
+
+        imageUrl = this.fileUploader.uploadFile(postDto.getImageUrl());
+
         Post newPost = new Post(
                 isExists.get().getId(),
                 postDto.getText(),

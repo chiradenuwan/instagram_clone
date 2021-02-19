@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
-//@Configuration
+@Configuration
 public class AmazonS3Config {
 
     @Value("${aws.s3.accessKey}")
@@ -26,7 +26,7 @@ public class AmazonS3Config {
         return AmazonS3ClientBuilder
                 .standard()
                 .withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials))
-                .withRegion(Regions.US_EAST_2)
+                .withRegion(Regions.AP_SOUTHEAST_1)
                 .build();
     }
 
