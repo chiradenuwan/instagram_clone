@@ -42,7 +42,7 @@ public class FollowServiceImpl implements FollowService {
             follow = followRepository.save(follow);
 
             if (follow != null) {
-                return new StandardResponse(200, "Added Sucessful", follow);
+                return new StandardResponse(200, "Added Successful", follow);
             }
             return new StandardResponse(415, "Not Added", null);
 

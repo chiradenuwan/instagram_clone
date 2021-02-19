@@ -29,7 +29,7 @@ public class ShareServiceImpl implements ShareService {
         Share save = shareRepo.save(share);
         System.out.println(share);
         if (save != null) {
-            return new StandardResponse(200, "Added Sucessful", save);
+            return new StandardResponse(200, "Added Successful", save);
 
         }
         return new StandardResponse(415, "Not Added", null);
@@ -38,6 +38,6 @@ public class ShareServiceImpl implements ShareService {
     @Override
     public StandardResponse deleteSharedPost(int shareId) throws Exception {
         shareRepo.deleteById((long) shareId);
-        return new StandardResponse(200, "Deleted Successful",null);
+        return new StandardResponse(200, "Delete Successful",null);
     }
 }

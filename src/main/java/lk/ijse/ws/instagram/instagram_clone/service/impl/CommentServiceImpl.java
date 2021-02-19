@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
         Comment save = commentRepo.save(comment);
         System.out.println(save);
         if (save != null) {
-            return new StandardResponse(200, "Added Sucessful", save);
+            return new StandardResponse(200, "Added Successful", save);
 
         }
         return new StandardResponse(415, "Not Added", null);

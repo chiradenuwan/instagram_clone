@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setProfilePicUrl(this.fileUploader.uploadFile(userDto.getProfilePicUrl()));
         User save = userRepository.save(user);
         if (save != null) {
-            return new StandardResponse(200, "Added Sucessful", save);
+            return new StandardResponse(200, "Added Successful", save);
 
         }
         return new StandardResponse(415, "Not Added", null);
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User update = userRepository.save(user);
         System.out.println(update);
         if (update != null) {
-            return new StandardResponse(200, "Added Sucessful", update);
+            return new StandardResponse(200, "Added Successful", update);
 
         }
         return new StandardResponse(415, "Not Added", null);

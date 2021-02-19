@@ -55,7 +55,7 @@ public class ReactServiceImpl implements ReactService {
                 return new StandardResponse(200, "Update Successful", update);
 
             }
-            return new StandardResponse(415, "Not Update", null);
+            return new StandardResponse(415, "Update Fail", null);
         } else {
             return new StandardResponse(500, "Record not found", "");
         }
@@ -65,7 +65,7 @@ public class ReactServiceImpl implements ReactService {
     public StandardResponse getAllReactionsToPost(int postId) throws Exception {
         List<React> allById = reactRepo.findAllByPostId(postId);
         if (allById.size() > 0) {
-            return new StandardResponse(200, "Reactions", allById.toString());
+            return new StandardResponse(200, "OK", allById.toString());
         } else {
             return new StandardResponse(415, "Not Reactions to Post", null);
         }
@@ -74,7 +74,7 @@ public class ReactServiceImpl implements ReactService {
     @Override
     public StandardResponse deleteReact(int reactId) throws Exception {
         reactRepo.deleteById((long) reactId);
-        return new StandardResponse(200, "Deleted Successful",null);
+        return new StandardResponse(200, "Delete Successful",null);
     }
 
 }

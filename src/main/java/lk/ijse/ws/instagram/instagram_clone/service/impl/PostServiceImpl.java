@@ -37,7 +37,7 @@ public class PostServiceImpl implements PostService {
         Post save = postRepo.save(post);
         System.out.println(post);
         if (save != null) {
-            return new StandardResponse(200, "Added Sucessful", save);
+            return new StandardResponse(200, "Added Successful", save);
 
         }
         return new StandardResponse(415, "Not Added", null);
@@ -48,16 +48,16 @@ public class PostServiceImpl implements PostService {
     public StandardResponse getAllPosts() throws Exception {
         List<Post> all = postRepo.findAll();
         if (all.size() > 0) {
-            return new StandardResponse(200, "", all);
+            return new StandardResponse(200, "OK", all);
         } else {
-            return new StandardResponse(200, "", null);
+            return new StandardResponse(200, "OK", null);
         }
     }
 
     @Override
     public StandardResponse deletePost(int postId) throws Exception {
         postRepo.deleteById((long) postId);
-        return new StandardResponse(200, "Deleted Successful", null);
+        return new StandardResponse(200, "Delete Successful", null);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class PostServiceImpl implements PostService {
         if (update != null) {
             return new StandardResponse(200, "Update Successful", update);
         }
-        return new StandardResponse(415, "Not Updated", null);
+        return new StandardResponse(415, "Update Fail", null);
 
     }
 }
